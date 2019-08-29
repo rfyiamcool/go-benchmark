@@ -8,7 +8,8 @@ import (
 )
 
 var (
-	data = []byte("xiaorui.cc")
+	data       = []byte("xiaorui.cc")
+	dataString = "xiaorui.cc"
 )
 
 func fnvHash(b []byte) uint32 {
@@ -25,6 +26,17 @@ func murmurHash(b []byte) uint32 {
 	murmurHasher := murmur3.New32()
 	murmurHasher.Write(b)
 	return murmurHasher.Sum32()
+}
+
+func fnvHashString(key string) uint32 {
+	hash := uint32(2166136261)
+	const prime32 = uint32(16777619)
+	for i := 0; i < len(key); i++ {
+		hash *= prime32
+		hash ^= uint32(key[i])
+	}
+
+	return hash
 }
 
 func TestFnv(t *testing.T) {
@@ -50,5 +62,11 @@ func BenchmarkCrc32(b *testing.B) {
 func BenchmarkMurmur32(b *testing.B) {
 	for n := 0; n < b.N; n++ {
 		murmurHash(data)
+	}
+}
+
+func BenchmarkFnvString(b *testing.B) {
+	for n := 0; n < b.N; n++ {
+		fnvHashString(dataString)
 	}
 }
