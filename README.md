@@ -31,3 +31,11 @@ BenchmarkCapBytesBuffer-4   	20000000	        73.2 ns/op	      64 B/op	       1 
 BenchmarkStringBuffer-4     	20000000	        95.9 ns/op	     128 B/op	       2 allocs/op
 BenchmarkStringBuilder-4    	20000000	       116 ns/op	     112 B/op	       3 allocs/op
 ```
+
+interface assert
+
+```
+Benchmark_NormalSwitch-4      	2000000000	         1.61 ns/op	       0 B/op	       0 allocs/op
+Benchmark_InterfaceSwitch-4   	200000000	         9.94 ns/op	       0 B/op	       0 allocs/op
+Benchmark_TypeSwitch-4        	100000000	        18.7 ns/op	       0 B/op	       0 allocs/op
+```
