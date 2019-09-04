@@ -39,3 +39,17 @@ Benchmark_NormalSwitch-4      	2000000000	         1.61 ns/op	       0 B/op	    
 Benchmark_InterfaceSwitch-4   	200000000	         9.94 ns/op	       0 B/op	       0 allocs/op
 Benchmark_TypeSwitch-4        	100000000	        18.7 ns/op	       0 B/op	       0 allocs/op
 ```
+
+defer
+
+```
+BenchmarkDefer-4            	30000000	        46.0 ns/op	       0 B/op	       0 allocs/op
+BenchmarkDeferLoop3-4       	20000000	       114 ns/op	       0 B/op	       0 allocs/op
+BenchmarkLastCallLoop3-4    	200000000	         6.97 ns/op	       0 B/op	       0 allocs/op
+BenchmarkDeferLoop5-4       	10000000	       191 ns/op	       0 B/op	       0 allocs/op
+BenchmarkLastCallLoop5-4    	200000000	         8.50 ns/op	       0 B/op	       0 allocs/op
+BenchmarkDeferLoop10-4      	 5000000	       370 ns/op	       0 B/op	       0 allocs/op
+BenchmarkLastCallLoop10-4   	100000000	        15.7 ns/op	       0 B/op	       0 allocs/op
+BenchmarkDeferLoop20-4      	 2000000	       837 ns/op	       0 B/op	       0 allocs/op
+BenchmarkDeferNo-4          	2000000000	         1.79 ns/op	       0 B/op	       0 allocs/op
+```
