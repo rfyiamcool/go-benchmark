@@ -4,35 +4,56 @@ import (
 	"testing"
 )
 
-func BenchmarkDeferYes1(b *testing.B) {
+func BenchmarkDefer(b *testing.B) {
 	t := 0
 	for i := 0; i < b.N; i++ {
 		doDefer(1, &t)
 	}
 }
 
-func BenchmarkDeferYes3(b *testing.B) {
+func BenchmarkDeferLoop3(b *testing.B) {
 	t := 0
 	for i := 0; i < b.N; i++ {
 		doDefer(3, &t)
 	}
 }
 
-func BenchmarkDeferYes5(b *testing.B) {
+func BenchmarkLastCallLoop3(b *testing.B) {
+	t := 0
+	for i := 0; i < b.N; i++ {
+		doLastCall(3, &t)
+	}
+}
+
+func BenchmarkDeferLoop5(b *testing.B) {
 	t := 0
 	for i := 0; i < b.N; i++ {
 		doDefer(5, &t)
 	}
 }
 
-func BenchmarkDeferYes10(b *testing.B) {
+func BenchmarkLastCallLoop5(b *testing.B) {
+	t := 0
+	for i := 0; i < b.N; i++ {
+		doLastCall(5, &t)
+	}
+}
+
+func BenchmarkDeferLoop10(b *testing.B) {
 	t := 0
 	for i := 0; i < b.N; i++ {
 		doDefer(10, &t)
 	}
 }
 
-func BenchmarkDeferYes20(b *testing.B) {
+func BenchmarkLastCallLoop10(b *testing.B) {
+	t := 0
+	for i := 0; i < b.N; i++ {
+		doLastCall(10, &t)
+	}
+}
+
+func BenchmarkDeferLoop20(b *testing.B) {
 	t := 0
 	for i := 0; i < b.N; i++ {
 		doDefer(20, &t)
@@ -58,4 +79,13 @@ func doDefer(loop int, t *int) {
 			*t++
 		}()
 	}
+}
+
+func doLastCall(loop int, t *int) {
+	f := func() {
+		for index := 0; index < loop; index++ {
+			*t++
+		}
+	}
+	f()
 }
