@@ -2,6 +2,12 @@
 
 golang lib benchmark
 
+
+## Other Benchmark test
+
+[batch notify channel](batch_notify_channel/README.md)
+
+
 ## Benchmark
 
 hash
