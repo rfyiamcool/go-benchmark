@@ -59,3 +59,10 @@ BenchmarkLastCallLoop10-4   	100000000	        15.7 ns/op	       0 B/op	       0
 BenchmarkDeferLoop20-4      	 2000000	       837 ns/op	       0 B/op	       0 allocs/op
 BenchmarkDeferNo-4          	2000000000	         1.79 ns/op	       0 B/op	       0 allocs/op
 ```
+
+reflect select
+
+```
+BenchmarkReflectSelect-4           10000            294436 ns/op           99134 B/op       1081 allocs/op
+BenchmarkGoSelect-4                  100          15649996 ns/op            4125 B/op         36 allocs/op
+```
