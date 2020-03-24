@@ -16,7 +16,7 @@ const count = 10000000
 func dispatchBenchmark(c, buf, sender, receiver int) {
 	start := time.Now()
 
-	balanceNum := 2
+	balanceNum := 5
 	chpool := make([]chan bool, 0, balanceNum)
 	for i := 0; i < balanceNum; i++ {
 		q := make(chan bool, buf)
