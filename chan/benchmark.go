@@ -28,7 +28,12 @@ func dispatchBenchmark(c, buf, sender, receiver int) {
 		go func() {
 			n := idx % balanceNum
 			for {
-				<-chpool[n]
+				select {
+				case _, ok := <-chpool[n]:
+					if !ok {
+						return
+					}
+				}
 			}
 		}()
 	}
@@ -49,6 +54,9 @@ func dispatchBenchmark(c, buf, sender, receiver int) {
 	}
 
 	wg.Wait()
+	for _, q := range chpool {
+		close(q)
+	}
 
 	cost := time.Since(start)
 	fmt.Printf("dispatch count: %d, chan buf: %d, sender: %d, recevier: %d, time cost: %s, qps: %.2f \n",
@@ -63,7 +71,12 @@ func directBenchmark(c, buf, sender, receiver int) {
 	for index := 0; index < receiver; index++ {
 		go func() {
 			for {
-				<-ch
+				select {
+				case _, ok := <-ch:
+					if !ok {
+						return
+					}
+				}
 			}
 		}()
 	}
@@ -82,7 +95,6 @@ func directBenchmark(c, buf, sender, receiver int) {
 	}
 
 	wg.Wait()
-	close(ch)
 
 	cost := time.Since(start)
 	fmt.Printf("direct  count: %d, chan buf: %d, sender: %d, recevier: %d, time cost: %s, qps: %.2f \n",
